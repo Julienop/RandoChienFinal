@@ -10,7 +10,7 @@ include './view/view_info.php';
 include './view/footer.php';
 
 // Déclaration des variables d'affichage
-$scripts = ['./src/main.js'];
+$scripts = ['./public/main.js'];
 $header = new ViewHeader($scripts);
 $info = new ViewInfo();
 $footer = new ViewFooter();

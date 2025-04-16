@@ -25,7 +25,7 @@ class ViewHike {
                                 <p><strong>Description :</strong> <?php echo $hike['description_hike']; ?></p>
                                 <p><strong>Longueur :</strong> <?php echo $hike['length']; ?> km</p>
                                 <p><strong>Difficulté :</strong> <?php echo $hike['difficulty']; ?></p>
-                                <p><strong>Région :</strong> <?php echo $hike['region']; ?></p>
+                                <p><strong>Région :</strong> <?php echo $hike['name_region']; ?></p>
                             </li>
                         <?php endforeach; ?>
                     </ul>

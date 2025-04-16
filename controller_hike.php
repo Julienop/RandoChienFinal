@@ -14,7 +14,7 @@ include './view/view_hike.php';
 include './view/footer.php';
 
 // Déclaration des variables d'affichage
-$scripts = ['./src/main.js'];
+$scripts = ['./public/main.js'];
 $hikeManager = new ManagerHike();
 $header = new ViewHeader($scripts);
 $hikeView = new ViewHike();

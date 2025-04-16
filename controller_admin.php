@@ -39,16 +39,25 @@ $unapprovedHikes = $hikeManager->readUnapprovedHikes();
 if (isset($_POST['approveHike'])) {
     $id_hike = sanitize($_POST['id_hike']);
     $message = $hikeManager->approveHike($id_hike);
+    $unapprovedHikes = $hikeManager->readUnapprovedHikes();
 }
 
-$scripts = ['./src/main.js'];
+$scripts = ['./public/main.js'];
 $headerView = new ViewHeader($scripts); // Renommage pour la clarté
 $adminView = new ViewAdmin(); // Renommage pour la clarté
 $footerView = new ViewFooter(); // Renommage pour la clarté
 
 // Affichage
 echo $headerView->render();
-$adminView->setMessage($message)->setUnapprovedHikes($unapprovedHikes);
+
+// Vérifiez si $unapprovedHikes est un tableau ou une chaîne d'erreur
+if (is_array($unapprovedHikes)) {
+    $adminView->setMessage($message)->setUnapprovedHikes($unapprovedHikes);
+} else {
+    // Si c'est une chaîne, c'est un message d'erreur de la base de données
+    $adminView->setMessage("Erreur lors de la récupération des randonnées non approuvées : " . $unapprovedHikes)->setUnapprovedHikes([]); // Passer un tableau vide pour éviter l'erreur de type
+}
+
 echo $adminView->render();
 echo $footerView->render();
 

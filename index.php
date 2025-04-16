@@ -16,7 +16,7 @@ include './view/view_accueil.php';
 include './view/footer.php';
 
 // //Déclaration des variables d'affichage
-$scripts = ['./src/main.js','./src/map.js'];
+$scripts = ['./public/main.js','./public/map.js'];
 $message = '';
 $hikes = [];
 $hikeManager = new ManagerHike();

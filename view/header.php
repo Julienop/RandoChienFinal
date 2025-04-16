@@ -17,7 +17,7 @@ public function render():string{
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Rando-Chien.fr - Accueil</title>
-                <link rel="stylesheet" href="./src/style.css">
+                <link rel="stylesheet" href="./public/style.css">
                 <link rel="preconnect" href="https://fonts.googleapis.com">
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                 <link href="https://fonts.googleapis.com/css2?family=Underdog&display=swap" rel="stylesheet">
@@ -35,7 +35,7 @@ public function render():string{
                     
                     <div id="header2">
                     
-                        <a href="index.php"><img id="logo" src="./src/logo/logo.svg" alt="LOGO" title="Accueil"></a>
+                        <a href="index.php"><img id="logo" src="./public/logo/logo.svg" alt="LOGO" title="Accueil"></a>
 
                         <div id="header3">
 

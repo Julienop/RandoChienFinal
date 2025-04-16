@@ -1,12 +1,16 @@
 <?php
 
+use App\Enum\DifficultyEnum;
+use Doctrine\ORM\Mapping as ORM;
+
 class ModelHike {
 
     private $id_hike;
     private $name_hike;
     private $description_hike;
     private $length;
-    private $difficulty;
+    #[ORM\Column(type: "string", enumType: DifficultyEnum::class)]
+    private DifficultyEnum $difficulty;
     private $region;
     private ?PDO $bdd;
 
@@ -61,18 +65,19 @@ class ModelHike {
         return $this->difficulty;
     }
 
-    public function setDifficulty($difficulty) {
-        $this->difficulty = $difficulty;
-        return $this;
+    public function setDifficulty(DifficultyEnum $difficulty): self {
+    $this->difficulty = $difficulty;
+    return $this;
     }
-    public function getRegion() {
+    public function getRegion(): ?string
+    {
         return $this->region;
     }
 
-    public function setRegion($region) {
+    public function setRegion(string $region): self
+    {
         $this->region = $region;
         return $this;
     }
 }
-
 ?>

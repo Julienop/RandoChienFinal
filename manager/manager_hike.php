@@ -4,7 +4,8 @@ class ManagerHike extends ModelHike {
 
     public function readAllHikes(): array | string {
         try {
-            $req = $this->getBDD()->prepare('SELECT id_hike, name_hike, description_hike, length, difficulty, region FROM hike WHERE approved = TRUE');
+            $req = $this->getBDD()->prepare('SELECT h.id_hike, h.name_hike, h.description_hike, 
+            h.length, h.difficulty, r.name_region as region FROM hike h INNER JOIN region r ON h.id_region = r.id_region WHERE h.approved = TRUE');
             $req->execute();
             $data = $req->fetchAll(PDO::FETCH_ASSOC);
             return $data;
@@ -12,10 +13,11 @@ class ManagerHike extends ModelHike {
             return $error->getMessage();
         }
     }    
-    public function readHikesByRegion($region): array | string {
+    public function readHikesByRegion($regionName): array | string {
         try {
-            $req = $this->getBDD()->prepare('SELECT id_hike, name_hike, description_hike, length, difficulty, region FROM hike WHERE region = ? AND approved = TRUE');
-            $req->execute([$region]);
+            $req = $this->getBDD()->prepare('SELECT h.id_hike, h.name_hike, h.description_hike, 
+            h.length, h.difficulty, r.name_region AS region FROM hike h INNER JOIN region r ON h.id_region = r.id_region WHERE r.name_region = ? AND h.approved = TRUE');
+            $req->execute([$regionName]);
             $data = $req->fetchAll(PDO::FETCH_ASSOC);
             return $data;
         } catch (EXCEPTION $error) {
@@ -25,8 +27,15 @@ class ManagerHike extends ModelHike {
 
     public function createHike() {
         try {
-            $req = $this->getBDD()->prepare('INSERT INTO hike (name_hike, description_hike, length, difficulty, region, approved) VALUES (?, ?, ?, ?, ?, FALSE)');
-            $req->execute([$this->getNameHike(), $this->getDescriptionHike(), $this->getLength(), $this->getDifficulty(), $this->getRegion()]);
+            $req = $this->getBDD()->prepare('
+                INSERT INTO hike (name_hike, description_hike,
+                length, difficulty, id_region, approved)
+                VALUES (?, ?, ?, ?, ?, FALSE)
+            ');
+            // Récupérer la valeur (string) de l'énumération difficulty
+            $difficultyValue = $this->getDifficulty()->value;
+            $req->execute([$this->getNameHike(), $this->getDescriptionHike(),
+            $this->getLength(), $difficultyValue, $this->getRegion()]);
             return "Randonnée soumise avec succès pour approbation !";
         } catch (EXCEPTION $error) {
             return $error->getMessage();
@@ -35,7 +44,7 @@ class ManagerHike extends ModelHike {
 
     public function readHikeByName(): array | string {
         try {
-            $req = $this->getBDD()->prepare('SELECT * FROM hike WHERE name_hike = ?');
+            $req = $this->getBDD()->prepare('SELECT h.*, r.name_region AS region FROM hike h INNER JOIN region r ON h.id_region = r.id_region WHERE h.name_hike = ?');
             $req->execute([$this->getNameHike()]);
             $data = $req->fetchAll(PDO::FETCH_ASSOC);
             return $data;
@@ -46,7 +55,8 @@ class ManagerHike extends ModelHike {
 
     public function readUnapprovedHikes(): array | string {
         try {
-            $req = $this->getBDD()->prepare('SELECT id_hike, name_hike, description_hike, length, difficulty, region FROM hike WHERE approved = FALSE');
+            $req = $this->getBDD()->prepare('SELECT h.id_hike, h.name_hike, h.description_hike, 
+            h.length, h.difficulty, r.name_region AS region FROM hike h INNER JOIN region r ON h.id_region = r.id_region WHERE h.approved = FALSE');
             $req->execute();
             $data = $req->fetchAll(PDO::FETCH_ASSOC);
             return $data;

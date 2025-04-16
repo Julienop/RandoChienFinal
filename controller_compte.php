@@ -15,7 +15,7 @@ include './view/view_compte.php';
 include './view/footer.php';
 
 // Déclaration des variables d'affichage
-$scripts = ['./src/main.js'];
+$scripts = ['./public/main.js'];
 $user = new ManagerUser();
 $header = new ViewHeader($scripts);
 $compte = new ViewCompte();

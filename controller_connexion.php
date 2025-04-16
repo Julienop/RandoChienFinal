@@ -15,7 +15,7 @@ include './view/view_connexion.php';
 include './view/footer.php';
 
 // DECLARATION DES VARIABLES D'AFFICHAGES
-$scripts = ['./src/main.js'];
+$scripts = ['./public/main.js'];
 $message = '';
 $user = new ManagerUser();
 $header = new ViewHeader($scripts);

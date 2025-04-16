@@ -13,9 +13,9 @@ class ViewFooter{
                         <a href="http://google.com/?q=A" class="lien">FAQ</a>
                     </div>
                     <div class="iconeFooter">
-                        <a href="https://facebook.com" target="_blank"><img class="icone" src="./src/logo/fb.png" alt="Facebook" title="Facebook"></a>
-                        <a href="https://instagram.com" target="_blank"><img class="icone" src="./src/logo/ig.png" alt="Instagram" title="Instagram"></a>
-                        <a href="https://twitter.com" target="_blank"><img class="icone" src="./src/logo/tw.png" alt="X" title="X"></a>
+                        <a href="https://facebook.com" target="_blank"><img class="icone" src="./public/logo/fb.png" alt="Facebook" title="Facebook"></a>
+                        <a href="https://instagram.com" target="_blank"><img class="icone" src="./public/logo/ig.png" alt="Instagram" title="Instagram"></a>
+                        <a href="https://twitter.com" target="_blank"><img class="icone" src="./public/logo/tw.png" alt="X" title="X"></a>
                     </div>
 
                 </footer>

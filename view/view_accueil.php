@@ -67,7 +67,6 @@ class ViewAccueil {
         </main>
         <?php return ob_get_clean();
     }
-
 }
 
 ?>
